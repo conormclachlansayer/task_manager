@@ -26,3 +26,25 @@ class create_task:
     def update_prioriy(self, new_priority):
         self.priority = new_priority
         return self.priority
+    
+class create_database:
+    def __init__(self, database_name, tasks = []):
+        self.database_name = database_name
+        self.tasks = tasks
+
+    def add_task(self, new_tasks):
+        for task in new_tasks:
+            self.tasks.append(task)
+        return self.tasks
+    
+    def print_task_names(self, due_date = False, priority = False):
+        i = 1
+        print(f'Tasks to Complete:')
+        for task in self.tasks:
+            print(f'{i}) {task.title}') 
+            if due_date: print(f'Due: {task.due_date}')
+            if priority: print(f'Priority: {task.priority}')
+            i += 1
+    
+
+    
