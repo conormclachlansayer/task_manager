@@ -32,10 +32,18 @@ class create_database:
         self.database_name = database_name
         self.tasks = tasks
 
-    def add_task(self, new_tasks):
+    def add_tasks(self, new_tasks):
         for task in new_tasks:
             self.tasks.append(task)
         return self.tasks
+    
+    def task_idx_by_title(self, title):
+        list_of_titles = []
+        for task in self.tasks:
+            list_of_titles.append(task.title)
+            
+        idx = list_of_titles.index(title)
+        return idx
     
     def print_task_names(self, due_date = False, priority = False):
         i = 1
@@ -43,8 +51,10 @@ class create_database:
         for task in self.tasks:
             print(f'{i}) {task.title}') 
             if due_date: print(f'Due: {task.due_date}')
-            if priority: print(f'Priority: {task.priority}')
+            if priority: print(f'Priority: {task.priority}\n')
             i += 1
     
-
-    
+    def delete_task_by_title(self, title):
+        idx = self.task_idx_by_title(title)
+        return self.tasks.pop(idx)
+        
